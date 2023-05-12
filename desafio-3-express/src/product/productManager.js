@@ -1,6 +1,7 @@
 const fs = require('fs')
-
+const constants = require('../constants/constants.js')
 class ProductManager{
+   
     constructor(fileName){
         this.fileName = fileName;
     }
@@ -8,26 +9,35 @@ class ProductManager{
     addProduct = async(product)=> {
         try
         {
-            if(fs.existsSync(this.nameFile)){
-                const products = this.getAll();
-                const lastIdAdded = products.reduce((acc,item)=> item.id > acc ? acc =item.id : acc,0);
-                const newProduct = {
-                    id: lastIdAdded+1,
-                    ...product
-                }
-                products.push(newProduct);
-                await fs.promises.writeFile(this.fileName, JSON.stringify(products,null,2))
-                return products;
-            }
-            else
+            const aKeys= Object.keys(constants.contractProducts).sort();
+            const bKeys= Object.keys(product).sort();
+            if(JSON.stringify(aKeys)===JSON.stringify(bKeys))
             {
-                const newProduct ={
-                    id:1,
-                    ...product
+                if(fs.existsSync(this.nameFile)){
+                    const products = this.getAll();
+                    const lastIdAdded = products.reduce((acc,item)=> item.id > acc ? acc =item.id : acc,0);
+                    const newProduct = {
+                        id: lastIdAdded+1,
+                        ...product
+                    }
+                    products.push(newProduct);
+                    await fs.promises.writeFile(this.fileName, JSON.stringify(products,null,2))
+                    return products;
                 }
-                await fs.promises.writeFile(this.fileName, JSON.stringify([newProduct],null,2))
-
+                else
+                {
+                    const newProduct ={
+                        id:1,
+                        ...product
+                    }
+                    await fs.promises.writeFile(this.fileName, JSON.stringify([newProduct],null,2))
+    
+                }
             }
+            else{
+                console.log('El producto no cumple la estructura minima requerida')
+            }
+            
 
         }catch(error){
             console.log('Error en addProduct')
@@ -59,4 +69,45 @@ class ProductManager{
             console.log(error)
         }
     }
+    //Fin getAll
+    deleteById = async(id)=>{
+        try{
+            const products = await this.getAll();
+            const newProducts = products.filter(item => item.id !== id);
+            await fs.promises.writeFile(this.nameFile,JSON.stringify(newProducts,null,2));
+
+        }
+        catch(error){
+            console.log('Error en deleteById')
+            console.log(error)
+        }
+
+    }
+    //Fin deleteById
+    deleteAll = async()=>{
+        try{
+            await fs.promises.writeFile(JSON.stringify([]))
+        } catch(error){
+            console.log('Error en deleteAll')
+            console.log(error)
+        }
+    }
+    //Fin deleteAll
+    updateById = async (id,body)=>{
+        try{
+            const products = await this.getAll();
+            const productPosition = products.findIndex(elm => elm.id ===id)
+            products[productPosition] = {
+                id:id,
+                ...body
+            }
+            await fs.promises.writeFile(this.nameFile,JSON.stringify(products,null,2));
+            return products;
+        }catch(error){
+            console.log('Error en updateById')
+            console.log(error)
+        }
+    }
 }
+
+module.exports=ProductManager;
