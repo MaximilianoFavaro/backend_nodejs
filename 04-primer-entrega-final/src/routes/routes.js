@@ -1,15 +1,18 @@
 import express from 'express'
-im
-const routeController = require('./controllers/routesController.js')
+import {getProducts,addProduct,deleteByIdProduct, updateById} from './controllers/productController.js';
+import { addCart,getCart,putProductToCart } from './controllers/cartController.js';
+
 const router = express.Router();
 
 
- routeController.createManager();
+router.get('/api/products/:id?',getProducts);
+router.post('/api/products/',addProduct)
+router.put('/api/products/:id',updateById)
+router.delete('/api/products/:id',deleteByIdProduct)
+
+router.get('/api/cart/:cid',getCart);
+router.post('/api/cart/',addCart);
+router.post('/api/cart/:cid/products/:pid',putProductToCart);
 
 
-
-router.get('/products',routeController.getOnlyAFewProducts);
-router.get('/products/:id',routeController.getProductsById);
-
-
-module.exports= {router};
+export {router}
