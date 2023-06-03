@@ -37,4 +37,9 @@ const socketServer = new Server(httpServer)
 socketServer.on("connection",async(socket) =>{
     
     socketServer.emit("realtimeproducts",await products.getAll())
+    socket.on("newProduct", async(data) =>{
+       const dataSaved = await products.save(data)
+       console.log(data)
+       socketServer.emit("realtimeproducts",dataSaved);
+    })
 })

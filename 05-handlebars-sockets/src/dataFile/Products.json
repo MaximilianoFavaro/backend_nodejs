@@ -48,5 +48,31 @@
       "/url1",
       "/url2"
     ]
+  },
+  {
+    "id": 6,
+    "title": "termo",
+    "description": "termo stanley",
+    "code": "33454",
+    "price": "3234",
+    "status": true,
+    "stock": "34",
+    "category": "Termos",
+    "thumbnail": [
+      "/foto"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "comida para gato",
+    "description": "proplan",
+    "code": "355",
+    "price": "3000",
+    "status": true,
+    "stock": "350",
+    "category": "michi",
+    "thumbnail": [
+      "/foto"
+    ]
   }
 ]
