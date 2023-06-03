@@ -1,0 +1,52 @@
+[
+  {
+    "id": 2,
+    "title": "MesaUpdated",
+    "description": "Descripcion de mesa",
+    "code": 201,
+    "price": 300,
+    "status": true,
+    "stock": 0,
+    "category": "Mesas",
+    "thumbnail": []
+  },
+  {
+    "id": 3,
+    "title": "Mesa",
+    "description": "Descripcion de mesa",
+    "code": 21,
+    "price": 300,
+    "status": true,
+    "stock": 0,
+    "category": "Mesas",
+    "thumbnail": []
+  },
+  {
+    "id": 4,
+    "title": "MesaCuadrada",
+    "description": "Descripcion de mesa",
+    "code": 2199,
+    "price": 300,
+    "status": true,
+    "stock": 0,
+    "category": "Mesas",
+    "thumbnail": [
+      "/url1",
+      "/url2"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "MesaCuadrada456",
+    "description": "Descripcion de mesa",
+    "code": 21999,
+    "price": 300,
+    "status": true,
+    "stock": 0,
+    "category": "Mesas",
+    "thumbnail": [
+      "/url1",
+      "/url2"
+    ]
+  }
+]
