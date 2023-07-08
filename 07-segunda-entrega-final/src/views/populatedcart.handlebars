@@ -1,0 +1,20 @@
+<div style="display: flex; flex-direction: column; align-content: center;">
+    {{#if products}}
+        {{#each products._id}}
+          <article>
+            <p>Id: {{this._id}}</p>
+            <p>Titulo: {{this.title}}</p>
+            <p>Descripcion: {{this.description}}</p>
+            <p>Codigo: {{this.code}}</p>
+            <p>Precio: {{this.price}}</p>
+            <p>Estado: {{this.status}}</p>
+            <p>Stock: {{this.stock}}</p>
+            <p>Categoria: {{this.category}}</p>
+            <p>Imagen: {{this.thumbnail}}</p>
+          </article>
+          {{/each}}
+    {{else}}
+        <h1>No hay productos para mostrar</h1>
+    {{/if}}
+
+</div>

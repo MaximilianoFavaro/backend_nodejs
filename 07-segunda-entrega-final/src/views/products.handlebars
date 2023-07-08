@@ -1,0 +1,19 @@
+<div style="gap:5px">
+    {{#each payload}}
+      <article>
+         id: {{this.id}}
+         title: {{this.title}}
+         price: {{this.price}}
+         category: {{this.category}}
+         <a style="text-decoration: none;" href="http://localhost:8080/api/products/{{this.id}}">Ver Producto</a>
+      </article>
+    {{/each}}
+    {{#if hasPrevPage}}
+      <a style="text-decoration: none;" href="{{prevPage}}"></a>
+    {{/if}}
+    <p>Pagina: {{page}}</p>
+    {{#if hasNextPage}}
+    <a style="text-decoration: none;" href="{{nextPage}}"></a>
+    {{/if}}
+    
+</div>
